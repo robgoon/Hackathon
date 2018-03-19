@@ -39,7 +39,8 @@ let platforms,
     scoreText,
     bombs,
     bombs2,
-    gameOver = false;
+    gameOver = false,
+    gameOverText;
 
 function create ()
 {
@@ -156,7 +157,7 @@ function collectStar (player, star)
     var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
     var bomb = bombs.create(x, 16, 'bomb');
-    var bomb2 = bombs.create(x, 16, 'bomb2')
+    var bomb2 = bombs.create(x, 150, 'bomb2')
     bomb.setBounce(1);
     bomb2.setBounce(1);
     bomb.setCollideWorldBounds(true);
@@ -178,5 +179,7 @@ function hitBomb (player, bomb)
   player.anims.play('turn');
 
   gameOver = true;
+
+  gameOverText = this.add.text(200, 250, 'GAME OVER', { fontSize: '64px', fill: '#000' });
 }
 
