@@ -24,6 +24,7 @@ function preload ()
   this.load.image('ground', 'assets/platform.png');
   this.load.image('star', 'assets/fs-icon.png');
   this.load.image('bomb', 'assets/tom.png');
+  this.load.image('bomb2', 'assets/cassio.png');
   this.load.spritesheet('dude',
     'assets/dude.png',
     { frameWidth: 32, frameHeight: 48 }
@@ -37,6 +38,7 @@ let platforms,
     score = 0,
     scoreText,
     bombs,
+    bombs2,
     gameOver = false;
 
 function create ()
@@ -97,6 +99,7 @@ function create ()
   scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
 
   bombs = this.physics.add.group();
+  // bombs2 = this.physics.add.group();
 
   this.physics.add.collider(bombs, platforms);
 
@@ -153,10 +156,15 @@ function collectStar (player, star)
     var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
     var bomb = bombs.create(x, 16, 'bomb');
+    var bomb2 = bombs.create(x, 16, 'bomb2')
     bomb.setBounce(1);
+    bomb2.setBounce(1);
     bomb.setCollideWorldBounds(true);
+    bomb2.setCollideWorldBounds(true);
     bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    bomb2.setVelocity(Phaser.Math.Between(-200, 200), 20);
     bomb.allowGravity = false;
+    bomb2.allowGravity = false;
 
   }
 }
